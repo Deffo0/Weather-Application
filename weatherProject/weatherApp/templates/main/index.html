@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.2.0/morph/bootstrap.min.css" 
+    integrity="sha512-InMdlCLdAnY6hWsQHiRyh62zyUi7rbdK2Qtwp+QBJFm4fTSzAYCLxMCuaKrUZgbcu9/dX4aZpyy2IPOrQ6n7PA==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Weather App </title>
+</head>
+
+<body>
+    <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+        <div class="container">
+            <a href="../" class="navbar-brand">Weather App <span style="color: hsla(25, 91%, 44%, 0.814);"> <strong> - Django
+            Framework</strong>
+            </span> </a>
+        </div>
+    </div>
+
+    <br /><br /> <br>
+    <div id="jumbotron" class="jumbotron" style="text-align: center;">
+        <img src="{% static 'images/weather-forecast.png' %}" class="image" style="width: 100px;">
+    </div>
+
+    <nav class="navbar navbar-lg navbar-dark bg-secondary">
+        <form method="post" class="col-md">
+            {% csrf_token %}
+            <div class=" input-group-lg">
+
+                <input type="text" class="form-control" name="city" placeholder="Choose Your City ...">
+                <div class="input-group-btn">
+                    <button type="submit" class="btn btn-dark">Search</button>
+                </div>
+            </div>
+        <form>
+    </nav>
+    <br> <br>
+    <div class="row">
+        {% if country_code and coordinate and temp and pressure and humidity %}
+        <div class="col d-flex justify-content-center" >
+            <div class=" card text-white bg-dark mb-3">
+                <div class="card-header" style="text-align: centerl;"><h2><img
+                    src="http://openweathermap.org/img/w/{{icon}}.png" alt="Image" style="width:70px"><strong>{{city}}</strong></h2></div>
+                <div class=" card-body" style="justify-content: first baseline;">
+                    <h5><span class="card-subtitle"></span> {{temp}}</h5>
+                    <h5><span class="card-subtitle"></span> {{pressure}} </h5>
+                    <h5><span class="card-subtitle"> </span> {{humidity}}</h5>
+                    <h5><span class="card-subtitle"> </span> {{description}}</h5>
+
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>  
+</body>
+
+</html>
